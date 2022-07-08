@@ -1,0 +1,44 @@
+.userprofile {
+    position: relative;
+    top: -30px;
+    z-index: 1;
+}
+section.agentprofilesection {
+    background: #F2F6F778;
+}
+.embed-responsive {
+    height: 300px;
+}
+.profiledetailrow .col-lg-4 {
+    background: #F2F6F7;
+    padding: 5px 0px;
+    border-radius: 10px 20px 20px 0px;
+}
+.row.profiledetailrow {
+    border: 1px solid #E6F1EF;
+    border-radius: 10px 10px 10px 0px;
+    max-width: 900px;
+    margin: auto;
+}.profiledetailrow .btn-call-chat {
+    border-radius: 50px;
+}
+.profiledetailrow .col-lg-8 {
+    position: relative;
+}
+.profiledetailrow .postdetail {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding-right: 10px;
+}
+@media(max-width:767px){
+    .media {
+        display: unset;
+    }
+    .profiledetailrow .postdetail {
+        position: unset;
+    }
+    .profiledetailrow .col-lg-4 {
+        border-radius: 10px 10px 20px 0px;
+    }
+}

@@ -1,0 +1,60 @@
+.acr-prof-enquiry{
+    background:#85A1E3;
+    width: 80px;
+    height: 80px;
+    color: #fff;
+    font-size: 36px;
+    font-family: 'Open Sans';
+    font-weight: 400;
+    border-radius: 15px;
+}
+.fs18{
+    font-size: 18px;
+}
+.acr-prof-name .acr-cust-name{
+    font-family: 'Open Sans';
+    font-size: 20px;
+}
+.acr-enq-links p{
+    font-family: 'Open Sans';
+    font-size: 15px;
+}
+.acr-enq-links p:hover{
+    color: #297CE0;
+}
+.enq-accordian  .card-header .nav-link::after{
+    content:  none 
+}
+.enq-accordian  .card-header .nav-link::before{
+    content:  none 
+}
+.enq-accordian .card .collapseparent.show+.card-header .nav-link, .accordion .card-header[aria-expanded="true"]{
+    background-color: #fff !important;
+}
+.chat-box{
+    background: #F2F6F7;
+    padding: 23px;
+}
+.acr-chat-box .name-circle{
+    background:#85A1E3;
+    width: 50px;
+    height: 50px;
+    color: #fff;
+    font-size: 20px;
+    font-family: 'Open Sans';
+    font-weight: 400;
+    border-radius: 50px;
+}
+.acr-chat-box .chat-desp-box p{
+    font-family: 'Open Sans';
+}
+.name-date-box .chat-user-name{
+    font-family: 'Open Sans';
+    font-size: 17px;
+}
+.rply-circle{
+    background-color: #9DD1C8 !important;
+}
+.chat-desp-box .chat-message{
+    width: 50%;
+}

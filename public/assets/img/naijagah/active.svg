@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="54" height="15" viewBox="0 0 54 15">
+  <g id="Group_579" data-name="Group 579" transform="translate(-508 -391)">
+    <g id="Rectangle_1700" data-name="Rectangle 1700" transform="translate(508 391)" fill="#fff" stroke="#20b69e" stroke-width="0.8">
+      <rect width="54" height="15" rx="7.5" stroke="none"/>
+      <rect x="0.4" y="0.4" width="53.2" height="14.2" rx="7.1" fill="none"/>
+    </g>
+    <g id="Group_578" data-name="Group 578" transform="translate(508.2 391.057)">
+      <g id="Group_610" data-name="Group 610">
+        <g id="Ellipse_109" data-name="Ellipse 109" transform="translate(-0.2 -0.057)" fill="#fff" stroke="#20b69e" stroke-width="0.8">
+          <circle cx="7.5" cy="7.5" r="7.5" stroke="none"/>
+          <circle cx="7.5" cy="7.5" r="7.1" fill="none"/>
+        </g>
+        <path id="Path_1334" data-name="Path 1334" d="M0,0V3.469H5.35" transform="translate(4.428 6.974) rotate(-45)" fill="none" stroke="#20b69e" stroke-linecap="round" stroke-width="1.5"/>
+      </g>
+    </g>
+    <text id="Active" transform="translate(527 402)" fill="#20b69e" font-size="10" font-family="OpenSans, Open Sans"><tspan x="0" y="0">Active</tspan></text>
+  </g>
+</svg>

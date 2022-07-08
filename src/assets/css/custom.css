@@ -1,0 +1,54 @@
+.pill-button {
+    display: inline-block;
+    position: relative;
+    padding: 3px 4px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    background: #E6F1EF;
+    border-radius: 28px;
+    color: #999999;
+    z-index: 0;
+    font-family: 'Open Sans';
+    font-size: 14px;
+    
+}
+    .pill-button-input {
+      display: none;
+      visibility: hidden;
+    }
+  
+    .pill-button-highlight {
+      transform: translate(0,-50%);
+      transition: all 0.2s;
+      position: absolute;
+      top: 50%;
+      left: 4px;
+      height: 100%;
+      width: 70px;
+      background: #20B69E;
+      border-radius: 22px;
+      z-index: 1;
+      color:#fff;
+      font-family: 'Open Sans';
+    }
+  
+    .pill-button-selection {
+      transition: all 0.2s;
+      display: inline-block;
+      position: relative;
+      padding: 0.4em 2.9em;
+      cursor: pointer;
+      z-index: 2;
+    }
+      .pill-button_active {
+        color: #2f8195;
+      }
+      .pill-button-selection_active{
+          color: #fff;
+      }
+      .form-group label {
+        color: #BDC4C3;
+        font-size: 15px;
+    }
+    
+     

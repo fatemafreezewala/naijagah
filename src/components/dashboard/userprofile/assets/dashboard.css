@@ -1,0 +1,334 @@
+body {
+  font-size: .875rem;
+  background-color: #F2F6F7;
+}
+
+.feather {
+  width: 16px;
+  height: 16px;
+  vertical-align: text-bottom;
+}
+
+/*
+ * Sidebar
+ */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  /* rtl:raw:
+  right: 0;
+  */
+  bottom: 0;
+  /* rtl:remove */
+  left: 0;
+  z-index: 100; /* Behind the navbar */
+  padding: 86px 0 0;/* Height of navbar */
+  background-color: #fff !important;
+
+}
+
+@media (max-width: 767.98px) {
+  .sidebar {
+    top: 5rem;
+  }
+  .main-section{
+    margin-left: 0% !important;
+  }
+}
+
+.sidebar-sticky {
+  position: relative;
+  top: 0;
+  height: calc(100vh - 48px);
+  padding-top: .5rem;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+.sidebar .nav-link {
+  font-weight: 500;
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar .nav-link .feather {
+  margin-right: 4px;
+  color: #727272;
+}
+
+.sidebar .nav-link.active {
+  color: #2470dc;
+}
+
+.sidebar .nav-link:hover .feather,
+.sidebar .nav-link.active .feather {
+  color: inherit;
+}
+
+.sidebar-heading {
+  font-size: .75rem;
+  text-transform: uppercase;
+}
+
+/*
+ * Navbar
+ */
+
+.navbar-brand {
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  font-size: 1rem;
+
+
+}
+
+.navbar .navbar-toggler {
+  top: .25rem;
+  right: 1rem;
+}
+
+.navbar .form-control {
+  padding: .75rem 1rem;
+  border-width: 0;
+  border-radius: 0;
+}
+
+.form-control-dark {
+  color: #fff;
+  background-color: rgba(255, 255, 255, .1);
+  border-color: rgba(255, 255, 255, .1);
+}
+
+.form-control-dark:focus {
+  border-color: transparent;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+}
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+ 
+}
+.main-section{
+  margin-left: 16%;
+}
+
+/* Renuka */
+.userProfile .userProfileletter{
+  background: #9DD1C8;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 25px;
+  border: 1px solid #9DD1C8;
+  border-radius: 10px;
+  margin: auto;
+}
+.userProfile {
+  text-align: center;
+}
+.container.userdashboad {
+  position: relative;
+}
+.userDashboardList a.list-group-item {
+  display: flex;
+  align-items: center;
+}
+.userDashboardList img {
+  width: 18px;
+  height: 18px;
+  margin-right: 20px;
+}
+.userProfile span, .user-phone {
+  font-size: 18px;
+  font-weight: 600;
+}
+.listing-map-wrapper {
+  height: unset;
+}
+.welcomecontainer .welcomeimg{
+  width:100%;
+}
+.welcomecontainer .welcomeimg::after, .welcomecontainer .welcomeimg::before{
+  content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(120deg, #eaee44, #33d0ff);
+    opacity: .7;
+}
+.welcomebox{
+  position: relative;
+}
+.welcomebox .welcome {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font-size: 3rem;
+  transform: translate(-50%, -50%);
+}
+.user-email{
+  font-size:16px;
+  font-weight: 600;
+}
+.welcomecontainer {
+  background: #fff;
+  margin: 20px;
+  padding: 20px 20px 40px 20px;
+  border-radius: 20px;
+  position:relative;
+}
+.media {
+  position: relative;
+}
+.userprofile {
+  position: relative;
+  top: -30px;
+  left: 30px;
+}
+.media-body {
+  position: relative;
+  left: 4%;
+  align-self: center;
+}
+.user-phone {
+  margin-right: 20px;
+}
+.media-body h5 {
+  margin-bottom: 15px;
+}
+.subheader {
+  border-radius: 20px;
+  background-repeat: no-repeat;
+}
+.user-edit {
+  background: #20B69E;
+  border-radius: 50%;
+  align-self: center;
+  display: flex;
+  width: 45px;
+  height: 45px;
+  justify-content: center;
+}
+.user-edit img {
+  width: 20px;
+  margin-right: 0px;
+}
+table tr:last-child td, table tr:last-child th{
+  border-bottom: none;
+}
+.user-plus {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 50px;
+}
+li.nav-item {
+  border-bottom: 1px solid #E6F1EF;
+  border-left: 4px solid #fff;
+}
+li.nav-item:hover{
+  background-color: #E6F1EF !important;
+  border-left: 4px solid #20B69E;
+}
+li.nav-item:hover span{
+  color: #20B69E;
+} 
+li.nav-item:hover .nav-link img{
+  filter: brightness(0) saturate(100%) invert(54%) sepia(97%) saturate(335%) hue-rotate(121deg) brightness(90%) contrast(94%);
+
+}
+.list-active{
+  background-color: #E6F1EF !important;
+  border-left: 4px solid #20B69E !important;
+}
+.list-active span{
+  color: #20B69E;
+}
+.list-active .nav-link img{
+  filter: brightness(0) saturate(100%) invert(54%) sepia(97%) saturate(335%) hue-rotate(121deg) brightness(90%) contrast(94%);
+}
+.nav-link span {
+  font-size: 16px;
+}
+@media(max-width:767px){
+  .media {
+    display: unset;
+  }
+  .welcomebox .welcome {
+    font-size: 1.5rem;
+  }
+}
+.custom-switch .custom-control-label::after {
+  background-color: #fff;
+  top: calc(0.5rem + 2px);
+  left: calc(-2.2rem + 1px);
+  width: 15px;
+  height: 15px;
+  transform: translate(0.1rem,-0.1rem);
+}
+.custom-switch .custom-control-input:checked~.custom-control-label::before {
+  content: "Yes";
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  padding-left: 6px;
+  font-weight: 600;
+
+}
+.custom-switch .custom-control-input:checked~.custom-control-label::after {
+  left: calc(-2.25rem + 15px);
+  transform: translate(0.9rem,-0.1rem);
+  width: 15px;
+  height: 15px;
+}
+.custom-control-label::before {
+  width:3rem !important;
+  height: 1.5rem !important;
+  border-radius: 1rem !important;
+  border: none !important;
+}
+.custom-switch .custom-control-input:not(:checked)~.custom-control-label::before{
+  justify-content: center;
+    padding-left: 10px;
+}
+.custom-switch .custom-control-label::before {
+  background: #E94646;
+  content: "No";
+  color: #fff;
+  display: flex;
+  align-items: center;
+  font-size: 10px;
+  font-weight: 600;
+}
+.dashbrating i{
+  color: #FFD501 !important;
+}
+.nav-tabs .nav-link{
+  padding: 10px 23px 6px 19px;
+}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+  color: #20B69E;
+  border-color: #20B69E;
+}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link:hover{
+  color: #20B69E;
+}
+.nav-tabs .nav-link::before{
+  background-color: #20B69E;
+}
