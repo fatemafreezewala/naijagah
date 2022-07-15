@@ -24,7 +24,7 @@ export default function LoginModal({show,handleClose,handleShow}) {
     const Step1 = () => {
       const { handleStep, previousStep, nextStep,goToStep } = useWizard();
       // Attach an optional handler
-      handleStep(() => {
+      handleStep(() => { 
         alert('Going to step 2');
       });
     
@@ -68,7 +68,7 @@ export default function LoginModal({show,handleClose,handleShow}) {
     };
     const Step2 = () => {
       const { handleStep, previousStep, nextStep,goToStep } = useWizard();
-      return <LoginInputForm ongoBack={()=>{goToStep(0)}}></LoginInputForm>
+      return <LoginInputForm handleCloseFiled={handleClose} ongoBack={()=>{goToStep(0)}}></LoginInputForm>
     }
     const Step3 = () => {
       const { handleStep, previousStep, nextStep,goToStep } = useWizard();

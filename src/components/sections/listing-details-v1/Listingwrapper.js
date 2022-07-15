@@ -4,7 +4,7 @@ import $ from 'jquery';
 import L from 'leaflet';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import mapdata from '../../../data/mapdata.json';
-import '../../../assets/js/Scroll.js'
+
 import 'magnific-popup'
 
 import api from '../../../constants/api' 
@@ -19,9 +19,9 @@ const customMarker = L.icon({
     iconAnchor: [25, 5],
 });
 const qs = require('qs');
-const Listingwrapper = () => {
-    useEffect(() => { 
-        
+const Listingwrapper = () => { 
+    useEffect(() => {  
+         
         
         
         // function popup() {
@@ -51,15 +51,13 @@ const Listingwrapper = () => {
     
          const getListingData =(id)=>{
         api.post('property/getListingsById',qs.stringify({ 'listing_id': id })).then(function (response) {
-            setitems(response.data.data[0])
+            // setitems(response.data.data[0])
             setamenities(response.data.data[0].list_amenities_values.split(','))
             
-            // let dataFilter = response.data.data
-            // dataFilter.forEach(element => {
-            //     element.img_array = element.meta_images.split(',')
-            // });
-            // console.log(dataFilter)
-            // setitems(dataFilter)
+            let dataFilter = response.data.data[0]
+            dataFilter.images =  dataFilter.meta_images.split(',')
+            console.log(dataFilter)
+            setitems(dataFilter)
             
           });
         
@@ -91,7 +89,7 @@ const Listingwrapper = () => {
     ];
   return (
  <>
-    <Banner images={item.img_array}/>
+    <Banner images={item.images}/>
                 <div className="section listing-wrapper">
                  
                 <div className="container"> 
@@ -422,14 +420,20 @@ const Listingwrapper = () => {
                        
                         <div className="col-lg-4">
                             <div className="sidebar sticky-sidebar">
-                                {item.list_listed_by_type == 'owner' ? (   <div className="sidebar-widget owner-description">
+                                {item.list_listed_by_type == 'user' ? (   <div className="sidebar-widget owner-description">
                                     <h6>Posted on – 4 April 2022</h6>
                                     {/* Author Start */}
                                     <div className="media sidebar-author listing-agent">
-                                        <Link to="#"><img src={process.env.PUBLIC_URL + "/assets/img/listing-single/Rectangle 1600.png"} alt="agent" /></Link>
+                                    <Link to="#">
+                                            {item.u_profile == null ? (<div style={{width:'100%',height:100,background:item.u_random_color,display:'flex',justifyContent:'center',alignItems:'center',color:'#fff',fontSize:25,fontWeight:'bold'}}>
+                                                {item.u_name && item.u_name.substring(0,1)}
+                                            </div>) : (<img src={process.env.PUBLIC_URL + "/assets/img/listing-single/lahoreproperty.png"} alt="agent" />)}
+                                            
+                                            
+                                        </Link>
                                         <div className="media-body">
-                                            <h5>Freddy Burben</h5>
-                                            <span>Saudi Arabia</span>
+                                            <h5>{item.u_name}</h5>
+                                            <span>India</span>
 
                                             <div className=''>
                                                 <Link to="/listing-details-v1" className="btn btn-primary btn-sm btn-call-chat">Call</Link>
@@ -442,9 +446,15 @@ const Listingwrapper = () => {
                                     <h6>Posted on – 4 April 2022</h6>
                                     {/* Author Start */}
                                     <div className="media sidebar-author listing-agent">
-                                        <Link to="#"><img src={process.env.PUBLIC_URL + "/assets/img/listing-single/lahoreproperty.png"} alt="agent" /></Link>
+                                        <Link to="#">
+                                            {item.u_profile == null ? (<div style={{width:'100%',height:100,background:item.u_random_color,display:'flex',justifyContent:'center',alignItems:'center',color:'#fff',fontSize:25,fontWeight:'bold'}}>
+                                                {item.u_name && item.u_name.substring(0,1)}
+                                            </div>) : (<img src={process.env.PUBLIC_URL + "/assets/img/listing-single/lahoreproperty.png"} alt="agent" />)}
+                                            
+                                            
+                                        </Link>
                                         <div className="media-body">
-                                            <h5>Lahore Real Estate</h5>
+                                            <h5>{item.u_name}</h5>
                                             <div className="media-des">
                                                 <span>Pakistan</span>
                                                 <div className='d-flex align-items-center'>

@@ -8,11 +8,7 @@ import { getDatabase, ref, set } from "firebase/database";
 const Listcomponent = ({item}) => {
     const [isliked, setisLiked] = React.useState('no')
     React.useEffect(() => {
-       
-    
         getDocumentsByid(item.list_owner+'-'+item.list_id)
-        
-      
     }, [item.list_id])
     const bedstip = (
         <Tooltip>
@@ -85,7 +81,7 @@ const Listcomponent = ({item}) => {
                 <Link to="/listing-details"><img src={'https://art-cause.com/test_app' + "/" + data} alt="listing" /></Link>
                 
             </div>
-            ))}
+            ))} 
             
            
         </Carousel> */}
@@ -111,13 +107,9 @@ const Listcomponent = ({item}) => {
                 </div>
                 <div className="listing-gallery-wrapper" style={{justifyContent:'flex-start'}}>
                         <p style={{marginTop:5}}>
-                        <i style={{color:'#297CE0',fontSize:20,marginRight:10}} className="fas fa-map-marker" />
-                        </p>
-                    
-                    <p className="listing-text">{item.list_area}<br></br>{item.list_society},{item.list_city}</p>
-               
-               
-                
+                            <i style={{color:'#297CE0',fontSize:20,marginRight:10}} className="fas fa-map-marker" />
+                        </p> 
+                        <p className="listing-text">{item.list_area}<br></br>{item.list_society},{item.list_city}</p>
                 </div>
                 <div className='divide'></div>
                 <div className="listing-gallery-wrapper" style={{justifyContent:'space-between',marginTop:15}}>
@@ -149,27 +141,24 @@ const Listcomponent = ({item}) => {
        
         <div className='row'>
             <div className='col-lg-12'>
-            <div className="listing-gallery-wrapper" style={{justifyContent:'space-between',alignItems:'center',marginTop:0}}>
-                  
-                   <div className="listing-author">
-                        {/* <img src={process.env.PUBLIC_URL + "/" + item.authorimg} alt="author" /> */}
+                <div className="listing-gallery-wrapper" style={{justifyContent:'space-between',alignItems:'center',marginTop:0}}>
+                    <div className="listing-author">
                         {item.u_profile == '' ? (<div className='defaultProfile' style={{background:item.u_random_color}}>
                             {item.u_name.substring(0,1)}
-                            </div>) : (<img src={process.env.PUBLIC_URL + "/" + item.authorimg} alt="author" />)}
+                        </div>) : (<img src={process.env.PUBLIC_URL + "/" + item.authorimg} alt="author" />)}
                         
                         <div className="listing-author-body" style={{marginLeft:10}}>
                             <p> <Link to="#">{item.u_name}</Link> </p>
                             <span className="listing-date">{item.list_listed_by_type}</span>
                         </div>
-                        
                     </div>
                     <div className=''>
-                    <Link to="/listing-details" className="btn btn-primary btn-sm btn-call-chat">Call</Link>
-                    <Link to="/listing-details" className="btn btn-primary btn-sm btn-call-chat">Chat</Link>
-                   </div>
-                    {/* <OverlayTrigger overlay={gallerytip}>
-                        <Link to="#" className="listing-gallery"> <i className="fas fa-camera" /> </Link>
-                    </OverlayTrigger> */}
+                        <Link to="/listing-details" className="btn btn-primary btn-sm btn-call-chat">Call</Link>
+                        <Link to="/listing-details" className="btn btn-primary btn-sm btn-call-chat">Chat</Link>
+                    </div>
+                {/* <OverlayTrigger overlay={gallerytip}>
+                    <Link to="#" className="listing-gallery"> <i className="fas fa-camera" /> </Link>
+                </OverlayTrigger> */}
                 </div>
             
             </div>

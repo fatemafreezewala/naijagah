@@ -13,10 +13,11 @@ class Home extends Component {
                     <meta
                         name="description"
                         content="#"
-                    />
+                    /> 
                 </MetaTags> 
                 <Header/>
                 <Content/> 
+                
                 <Footer/>
             </Fragment> 
         );

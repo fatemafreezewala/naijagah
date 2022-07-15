@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import 'photoswipe/dist/photoswipe.css'
  import { Gallery, Item } from 'react-photoswipe-gallery'
-
-export default function Banner() {
+import imgUrl from '../../../constants/imgUrl'
+export default function Banner({images}) {
   const bannerpost = [
     {
         img: 'assets/img/listing-single/1.jpg',
@@ -98,6 +98,12 @@ const smallItemStyles = {
       },
     },
 ]
+React.useEffect(() => {
+  console.log(images)
+
+  
+}, [])
+
   return (
     <Gallery  uiElements={uiElements}>
     <div
@@ -110,23 +116,23 @@ const smallItemStyles = {
       }}
       id="detailbanner"
     >
-      <Item
-        original="https://farm4.staticflickr.com/3894/15008518202_c265dfa55f_h.jpg"
-        thumbnail="https://farm4.staticflickr.com/3894/15008518202_b016d7d289_m.jpg"
-        width="1600"
-        height="500"
+      {images && images.map(data=>(<Item
+        original={imgUrl+data}
+        thumbnail={imgUrl+data}
+       
         alt="Photo of seashore by Folkert Gorter"
       >
         {({ ref, open }) => (
           <img
             style={{ cursor: 'pointer' }}
-            src="https://farm4.staticflickr.com/3894/15008518202_b016d7d289_m.jpg"
+            src={imgUrl+data}
             ref={ref}
             onClick={open}
           />
         )}
-      </Item>
-      <Item
+      </Item>))}
+      
+      {/* <Item
         original="https://farm6.staticflickr.com/5591/15008867125_b61960af01_h.jpg"
         thumbnail="https://farm6.staticflickr.com/5591/15008867125_68a8ed88cc_m.jpg"
         width="1600"
@@ -189,7 +195,7 @@ const smallItemStyles = {
             onClick={open}
           />
         )}
-      </Item>
+      </Item> */}
     </div>
   </Gallery>
   )

@@ -2,7 +2,6 @@
 import React, { Component, Fragment,useState } from 'react';
 import Sidebar from '../../layouts/Shopsidebar';
 import listing from '../../../data/listings.json';
-import classNames from 'classnames';
 import Loader from '../../layouts/Loader';
 import '../../../assets/js/custom.js'
 import '../../../assets/css/custom.css'
@@ -10,13 +9,9 @@ import '../../../assets/js/pillButton.js'
 import ButtonWithIcon from '../../layouts/ButtonWithIcon';
 import api from '../../../constants/api';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
-import imgUrl from '../../../constants/imgUrl';
-
-import { async } from '@firebase/util';
 import Listcomponent from './Listcomponent';
 
-
+ 
 const Content = () => {
     const [items, setitems] = useState(null)
     const [currentPage, setcurrentPage] = useState(1)
@@ -24,10 +19,8 @@ const Content = () => {
     const [loading, setloading] = useState(false)
     React.useEffect(() => {
         getListingData()
-        
       return () => {
         getListingData()
-        
       }
     }, [])
     React.useEffect(()=>{
@@ -250,9 +243,9 @@ const Content = () => {
                </div> 
             
                {items && items.map((item, i) => {
-        return (<Listcomponent  item={item}></Listcomponent>)
+                    return (<Listcomponent  item={item}></Listcomponent>)
 
-    })}
+                })}
                {/* Pagination Start */}
               {/* <div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
               <h5 style={{margin:0}}>Showing 1–4 of 10 results</h5>

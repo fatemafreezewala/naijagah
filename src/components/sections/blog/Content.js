@@ -17,10 +17,10 @@ const Content = () => {
       }
     }, [])
     
-    const getBlogs = () =>{
+    const getBlogs = () =>{  
         setLoading(true)
         api.get('/blogs')
-            .then((response) => {
+            .then((response) => { 
                 let data = response.data.data
                 data.forEach(element => {
                     element.imgArray = element.blog_imgs.split(',');

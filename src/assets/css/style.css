@@ -3881,6 +3881,7 @@ table img{
   display: flex;
     min-width: 0px;
     overflow: hidden;
+    position: relative;
 }
 .thumbsContainer .thumb .thumbInner img{
   display: block;
@@ -7010,11 +7011,11 @@ nav.navbar{
 
 
 ul.thumb-Images li {
-  width: 120px;
+ 
   float: left;
   display: inline-block;
   vertical-align: top;
-  height: 120px;
+
 }
 
 .img-wrap {
@@ -7366,4 +7367,36 @@ transform: translateY(100%);
   background-size: cover !important;
   width: 100%;
   height: 100%;
+}
+.thumbInner:hover .thumboverlay{
+  display: block;
+  cursor: pointer;
+}
+.thumboverlay{
+  position: absolute;
+  background: rgba(0,0,0,0.3);
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  display: none;
+}
+li.edit-control label i {
+  color: #fff;
+  
+}
+li.edit-control label i:hover{
+  cursor: pointer;
+}
+ul.thumboverlay li {
+  display: inline-block;
+    margin: 0 5px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 20px;
+    line-height: 20px;
+    transition: .1s ease-in-out;
+}
+#detailbanner img:first-child {
+  grid-row: 1/4;
+  min-height: 100% !important;
 }

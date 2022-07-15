@@ -11,7 +11,7 @@ const LoginInputForm = ({handleCloseFiled,ongoBack}) => {
   const history = useHistory()
   const { isLoggedIn } = useSelector(state => state.auth);
   const { message } = useSelector(state => state.message); 
-  const notify = (msg) => toast.info(msg,{});
+
   const dispatch = useDispatch(); 
    const handleChange = (e)=>{
         let field = fields; 
@@ -24,14 +24,15 @@ const LoginInputForm = ({handleCloseFiled,ongoBack}) => {
         if (validateForm()) {
             dispatch(login(fields["emailid"], fields["password"]))
             .then(() => {
-              notify('Login Success') 
+              toast.info('Login Success',{})
+             
               handleCloseFiled()
             
                 history.push('/')
             })
             .catch((err) => {
               if(message){
-                notify(message)
+                toast.info(message,{})
               }
               setLoading(false);
             });

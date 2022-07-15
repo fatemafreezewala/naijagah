@@ -58,7 +58,8 @@ const Enquiries = React.lazy(() => import("./components/dashboard/userprofile/en
 const Ratings = React.lazy(() => import("./components/dashboard/userprofile/ratings/ratings"));
 const Notification = React.lazy(() => import("./components/dashboard/userprofile/notification/notification"));
 const Agentprofile = React.lazy(() => import("./components/dashboard/agentprofile/profile/Profile"));
-
+const Agentlisting = React.lazy(() => import("./components/dashboard/agentprofile/listing/Listing"));
+const Agentrating = React.lazy(() => import("./components/dashboard/agentprofile/rating/Agentrating"));
 function App() {
   const [showModeratorBoard, setShowModeratorBoard] = React.useState(false);
   const [showAdminBoard, setShowAdminBoard] = React.useState(false);
@@ -127,13 +128,16 @@ function App() {
           {/* Agents */}
           <Route path="/agent-archive" component={Agentarchive} />
           <Route path="/agent-details" component={Agentdetails} />
+          
           <Route path="/profile" component={Profile} />
           <Route path="/agentprofile" component={Agentprofile} />
           <Route path="/profile-listings" component={Profilelistings} />
           <Route path="/profile-saved-listings" component={Profilesavedlistings} />
+          <Route path="/agentlisting" component={Agentlisting} />
+          <Route path="/agentrating" component={Agentrating} />
           {/* Agency */}
           <Route path="/agency-archive" component={Agencyarchive} />
-          <Route path="/agency-details" component={Agencydetails} />
+          <Route path="/agency-details" component={Agencydetails} /> 
           {/* UserDashboards */}
           <Route path="/user-profile" component={UserProfile} />
           <Route path="/user-listing" component={UserListing} />

@@ -40,7 +40,7 @@ const Menu = () => {
                         </ul> */}
                     </li>
                     <li className="menu-item menu-item-has-children mega-menu-wrapper">
-                        <Link to="#">FIND AN AGENT</Link>
+                        <Link to="/agentlisting">FIND AN AGENT</Link>
                         {/* <ul className="submenu">
                             <li>
                                 <img src={process.env.PUBLIC_URL + "/assets/img/megamenu.png"} alt="img" />

@@ -182,14 +182,14 @@ function RenderThumbnail(e, readerEvt) {
   var li = document.createElement("li");
   ul.appendChild(li);
   li.innerHTML = [
-    '<div class="img-wrap"> <span class="close">&times;</span>' +
-      '<img class="thumb" src="',
+    '<div class="thumbInner"><ul class="thumboverlay" role="navigation"> <li class="edit-control" role="presentation"> <label title="crop image" data-type="crop_open"><i class="fas fa-crop"></i></label> </li><li class="edit-control" role="presentation"> <label title="remove image" data-type="remove_image"><i  class="close fas fa-trash"></i></label> </li> </ul>' +
+      '<div class="img-wrap"><img class="thumb" src="',
     e.target.result,
     '" title="',
     escape(readerEvt.name),
     '" data-id="',
     readerEvt.name,
-    '"/>' + "</div>"
+    '"/><div>' + "</div></div>"
   ].join("");
 
   var div = document.createElement("div");

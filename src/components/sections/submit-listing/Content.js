@@ -9,7 +9,7 @@ import mapdata from '../../../data/mapdata.json';
 import { Link,useHistory } from 'react-router-dom';
 import L from 'leaflet';
 import '../../../assets/js/custom'
-// import '../../../assets/js/fileupload'
+ //import '../../../assets/js/fileupload'
 import PropertyType from './PropertyType';
 import BuyorSell from './BuyorSell';
 import 'leaflet/dist/leaflet.css';
@@ -17,10 +17,13 @@ import {Modal,Button} from 'react-bootstrap'
 import 'react-image-crop/dist/ReactCrop.css'
 import ReactCrop from 'react-image-crop'
 import AppService from '../../../services/app.service';
-import { toast ,ToastContainer} from 'react-toastify';
+import { toast ,ToastContainer} from 'react-toastify'; 
 import { useSelector } from "react-redux";
 import * as $ from "jquery"
 import Overlooking from './Overlooking';
+import Cropper from "react-cropper";
+import "cropperjs/dist/cropper.css";
+
 // Features 
 const features = [ 
     { id: 1, icon: '/assets/img/amenities/a1.svg', title: `24 x 7 Water Availability` },
@@ -64,7 +67,7 @@ function Content(props) {
         <Tooltip>
             The Legal ownership will remain these irrespective of the person who has placed add.
         </Tooltip>
-    );
+    ); 
     const [crop, setCrop] = useState({
         unit: '%',
         x: 25,
@@ -74,11 +77,14 @@ function Content(props) {
       })
       const [srcofImageCrop, setSrcofImageCrop] = useState("")
       const history = useHistory()
-    useEffect(() => () => {
-        files.forEach(file => URL.revokeObjectURL(file.preview));
-    }, [files]); 
+    // useEffect(() => () => { 
+    //     files.forEach(file => URL.revokeObjectURL(file.preview));
+    // }, [files]); 
     const [fields, setfields] = useState({})
     const [images, setImages] = useState([])
+    const [type, setType] = React.useState('sell')
+    const [option, setOption] = React.useState('Home')
+    const [location, setLocation] = React.useState('') 
     const [selectedFiles, setSelectedFiles] = useState([])
     const [position, setPosition] = useState({lat:30.3753,lng: 69.3451})
     const markerRef = useRef(null)
@@ -97,62 +103,85 @@ function Content(props) {
    //Addlitsing Logic API
    const onSubmitContact = (e) =>{
     e.preventDefault()
-    let yourArray = []
-    $("input:checkbox[class=amenities]:checked").each(function(){
-        yourArray.push($(this).val());
-    });
-    console.log(fields)
-    const formData = new FormData()
-    for (let i = 0; i < selectedFiles.length; i++) {
-        formData.append(`photos`, selectedFiles[i])
-     }
-    
-        formData.append('list_owner', currentUser.u_id)
-        formData.append('list_property_type', 'Home')
-        formData.append('list_property_subtype', 'General')
-        formData.append('list_sell_or_rent', 'Sell')
-        formData.append('list_property_number', fields["list_property_number"])
-        formData.append('list_building', fields["list_building"])
-        formData.append('list_street', fields["list_street"])
-        formData.append('list_area', fields["list_area"])
-        formData.append('list_society', fields["list_society"])
-        formData.append('list_city', fields["list_city"])
-       
-        formData.append('list_if_display_street', fields["list_if_display_street"])
-        formData.append('list_isactive', 1)
-        formData.append('list_listed_by_type',currentUser.u_role)
-        formData.append('meta_title', fields["meta_title"])
-        formData.append('meta_size', fields["meta_size"])
-        formData.append('meta_price', fields["meta_price"])
-        formData.append('meta_no_bedrooms', fields["meta_no_bedrooms"])
-        formData.append('meta_no_bathrooms', fields["meta_no_bathrooms"])
-        formData.append('meta_overlooking', fields["meta_overlooking"])
-
-        formData.append('meta_ownership_type', fields["meta_ownership_type"])
-        formData.append('meta_description', fields["meta_description"])
-        formData.append('meta_kitchens', fields["meta_kitchens"])
-        formData.append('meta_living', fields["meta_living"])
-        formData.append('meta_balcony', fields["meta_balcony"])
-        formData.append('meta_no_of_floors', fields["meta_no_of_floors"])
-        formData.append('meta_if_parking', fields["meta_if_parking"])
-        formData.append('meta_elevator', fields["meta_elevator"])
-        formData.append('meta_possesion', fields["meta_possesion"])
-        formData.append('meta_property_age', fields["meta_property_age"])
-        formData.append('meta_lat', position.lat)
-        formData.append('meta_lon',position.lng)
-        formData.append('list_amenities_values', yourArray.toString())
-        let response = AppService.postProperty(formData).then((response) => {
-            toast.success('Your property is listed with naijagah.')
-            setTimeout(function () {
-                history.push("/")
-            }, 2500);
+        if(fields["list_area"] != '' 
+        && fields["list_society"] != ''
+        && fields["list_if_display_street"] != ''
+        && fields["meta_title"] != ''
+        && fields["meta_size"] != ''
+        && fields["meta_price"] != ''
+        && fields["meta_no_bedrooms"] != ''
+        && fields["meta_no_bathrooms"] != ''
+        && fields["meta_overlooking"] != ''
+        && fields["meta_ownership_type"] != '' 
+        && fields["meta_description"] != ''
+        && fields["meta_kitchens"] != ''
+        && fields["meta_living"] != ''
+        && fields["meta_balcony"] != ''
+        && fields["meta_no_of_floors"] != ''
+        && fields["meta_if_parking"] != ''
+        && fields["meta_elevator"] != ''
+        && fields["meta_possesion"] != ''
+        && fields["meta_property_age"] != ''
+        && fields["list_property_number"] != '' 
+        && fields["list_building"] != ''
+        && fields["list_city"] != ''
+        && fields["list_street"] != '' && location != ''){
+            let yourArray = []
+            $("input:checkbox[class=amenities]:checked").each(function(){
+                yourArray.push($(this).val());
+            });
+            console.log(fields)
+            const formData = new FormData()
+            for (let i = 0; i < selectedFiles.length; i++) {
+                formData.append(`photos`, selectedFiles[i])
+             }
             
-          });
+                formData.append('list_owner', currentUser.u_id)
+                formData.append('list_property_type', option)
+                formData.append('list_property_subtype', location)
+                formData.append('list_sell_or_rent', type)
+                formData.append('list_property_number', fields["list_property_number"])
+                formData.append('list_building', fields["list_building"])
+                formData.append('list_street', fields["list_street"])
+                formData.append('list_area', fields["list_area"])
+                formData.append('list_society', fields["list_society"])
+                formData.append('list_city', fields["list_city"])
+               
+                formData.append('list_if_display_street', fields["list_if_display_street"])
+                formData.append('list_isactive', 1)
+                formData.append('list_listed_by_type',currentUser.u_role)
+                formData.append('meta_title', fields["meta_title"])
+                formData.append('meta_size', fields["meta_size"])
+                formData.append('meta_price', fields["meta_price"])
+                formData.append('meta_no_bedrooms', fields["meta_no_bedrooms"])
+                formData.append('meta_no_bathrooms', fields["meta_no_bathrooms"])
+                formData.append('meta_overlooking', fields["meta_overlooking"])
         
-    // }else{
-       
-    //     toast.error("All fields are required")
-    // }
+                formData.append('meta_ownership_type', fields["meta_ownership_type"])
+                formData.append('meta_description', fields["meta_description"])
+                formData.append('meta_kitchens', fields["meta_kitchens"])
+                formData.append('meta_living', fields["meta_living"])
+                formData.append('meta_balcony', fields["meta_balcony"])
+                formData.append('meta_no_of_floors', fields["meta_no_of_floors"])
+                formData.append('meta_if_parking', fields["meta_if_parking"])
+                formData.append('meta_elevator', fields["meta_elevator"])
+                formData.append('meta_possesion', fields["meta_possesion"])
+                formData.append('meta_property_age', fields["meta_property_age"])
+                formData.append('meta_lat', position.lat)
+                formData.append('meta_lon',position.lng)
+                formData.append('list_amenities_values', yourArray.toString())
+                let response = AppService.postProperty(formData).then((response) => {
+                    toast.success('Your property is listed with naijagah.')
+                    setTimeout(function () {
+                        history.push("/")
+                    }, 2500);
+                     
+                  });
+        }else{
+            
+            toast.error('Please fill all required field.')
+        }
+    
     
 }
 
@@ -170,7 +199,7 @@ function Content(props) {
   const handleChangeCheck = (e)=> {
     let isChecked = e.target.checked;
     console.log(isChecked)
-    // do whatever you want with isChecked value
+    
   }
    const handleMapOnclick = (e)=>{
     console.log(e)
@@ -195,6 +224,49 @@ function Content(props) {
     const cropper = imageElement?.cropper;
     console.log(cropper.getCroppedCanvas().toDataURL());
   };
+  const onDrop = React.useCallback(acceptedFiles => {
+    let newArray = []
+    acceptedFiles.forEach(file => {
+        Object.assign(file, {
+            preview: URL.createObjectURL(file)
+        })
+        newArray.push(file)
+    });
+    console.log(newArray)
+    setFiles([...files, ...newArray])
+  }, [files])
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop
+});
+const removeFile = (file) => () => {
+  
+    setFiles(files.splice(files.indexOf(file)));
+    console.log(files)
+  }
+ 
+const thumbs = files.map(file => (
+    <div className="thumb" key={file.name}>
+       
+        <div className="thumbInner">
+            <ul class="thumboverlay" role="navigation"> 
+                
+                <li class="edit-control" role="presentation"> 
+                    <label title="crop image" data-type="crop_open"> 
+                    <i class="fas fa-crop"></i>
+                    </label> 
+                </li>  
+                <li class="edit-control" role="presentation"> 
+                    <label title="remove image" data-type="remove_image"> 
+                    <i onClick={removeFile(file)} class="fas fa-trash"></i></label> 
+                </li> 
+            </ul>
+            <img
+                src={file.preview}
+                alt="img"
+            />
+        </div>
+    </div>
+));
     return (
         <div className="section" style={{paddingTop:120}}>
              <ToastContainer></ToastContainer>
@@ -263,10 +335,10 @@ function Content(props) {
                                     <Accordion.Collapse eventKey="0" className="collapseparent">
                                         <Card.Body>
                                         <h5 className='font-weight-600 required mt-5 mb-3' style={{margin:0}}>You want to</h5>
-                                         <BuyorSell></BuyorSell>
+                                         <BuyorSell type={type} setType={setType}></BuyorSell>
                                         <h5 className='font-weight-600 required mt-5 mb-3' style={{margin:0}}>Your property type</h5>
                                             <div className='row'>
-                                            <PropertyType fields={fields} setfields={setfields}></PropertyType>
+                                            <PropertyType option={option} setOption={setOption} location={location} setLocation={setLocation} fields={fields} setfields={setfields}></PropertyType>
                                             </div> 
                                             <h5 className='font-weight-600 required mt-5 mb-3' style={{margin:0}}>Your property location</h5>
                                            <div className='row '>
@@ -311,7 +383,7 @@ function Content(props) {
                                                </div>
                                            </div>
                                            <div class="form-check mb-4 mt-4">
-                                                <input name="list_if_display_street" class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked />
+                                                <input name="list_if_display_street" class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
                                                 <label class="form-check-label font-weight-600" for="flexCheckChecked">
                                                 To protect your privacy, Your property (building) and street Number is not visible. Do you want to display this on property listing ?
                                                 </label>
@@ -334,48 +406,7 @@ function Content(props) {
                                                     </div>
                                                </div>
                                            
-                                        {/* <div className="banner-map">
-                                <MapContainer
-                                    className="markercluster-map map"
-                                    center={[38.907, -77.04]} 
-                                    zoom={12}
-                                  
-                                    ref={mapRef}
-                                    id='map-container'
-                                  
-                                >
-                                    <TileLayer
-                                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                                    />
-                                   {mapdata.map((item, i) => (
-                                        <Marker key={i} position={item.geometry.coordinates} icon={customMarker}>
-                                            <Popup>
-                                                <div className="mapboxgl-popup mapboxgl-popup-anchor-top">
-                                                    <div className="mapboxgl-popup-tip" />
-                                                    <img src={item.properties.thumbnail} alt={item.properties.title} />
-                                                    <div className="acr-listing-popup-body">
-                                                        <h5>
-                                                            <Link to="#" title={item.properties.title}>
-                                                                {item.properties.title}
-                                                            </Link>
-                                                        </h5>
-                                                        <span className="listing-price">{item.properties.price}</span>
-                                                        <p>
-                                                            <i className="fas fa-map-signs" />{item.properties.description}
-                                                        </p>
-                                                        <div className="location-popup-meta">
-                                                            <span><i className="fas fa-bed" />{item.properties.bed}</span>
-                                                            <span><i className="fas fa-bath" />{item.properties.bath}</span>
-                                                            <span><i className="fas fa-ruler-combined" />{item.properties.size}</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Popup>
-                                        </Marker>
-                                    ))}
-                                </MapContainer>
-                            </div> */}
+                                   
                                         </Card.Body>
                                     </Accordion.Collapse>
                                     <Card.Header>
@@ -483,14 +514,30 @@ function Content(props) {
                                                 </div>
                                             </div>
                                             <div className='row'>
-                                            <div className="col-lg-3">
-                                            <label className='font-weight-600 required' style={{margin:20,marginBottom:30,marginLeft:0}}>Images</label>
+                                            <div className="col-lg-12">
+                                            {/* <label className='font-weight-600 required' style={{margin:20,marginBottom:30,marginLeft:0}}>Images</label>
+                                            <div className="form-group">
+                                           
+                                            <div {...getRootProps({ className: 'dropzone' })}>
+                                                <input {...getInputProps()} />
+                                                <div className="dropzone-msg dz-message needsclick">
+                                                    <i className="fas fa-cloud-upload-alt" />
+                                                    <h5 className="dropzone-msg-title">Drop files here or click to upload.</h5>
+                                                    
+                                                </div>
+                                            </div>
+                                           
+                                            <span className="acr-form-notice">*You can upload up to 5 images for your listing</span>
+                                            <aside className="thumbsContainer">
+                                                {thumbs}
+                                            </aside>
+                                            </div> */}
                                             <input  type="file" onChange={selectFiles} multiple  id="files"  accept="image/jpeg, image/png,"/><br />
-                                            {/* <span class="btn  fileinput-button">
+                                            <span class="btn  fileinput-button">
                                             <p style={{textAlign:'center',color:'#BDC4C3'}}> + <br></br>Add Images</p>
                                                 <input  type="file" multiple  id="files"  accept="image/jpeg, image/png,"/><br />
                                             </span>
-                                            <output id="Filelist"></output> */}
+                                            <output id="Filelist"></output>
                                             </div> 
                                             </div>
                                         </Card.Body>

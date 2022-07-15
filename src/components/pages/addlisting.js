@@ -17,8 +17,8 @@ class Submitlisting extends Component {
                     /> 
                 </MetaTags>
                 <Header/>
-                {/* <Breadcrumb breadcrumb={{pagename:'Submit Listing'}} /> */}
-                <Content/>
+               
+                <Content/> 
                 <Footer/>
             </Fragment>
         );

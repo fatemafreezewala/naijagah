@@ -5,7 +5,7 @@ import Footer from '../../../layouts/Footer';
 import Header from '../../../layouts/Header';
 import Content from './Content';
 
-class Home extends Component {
+class Profile extends Component {
     render() {
         return (
             <Fragment>
@@ -17,7 +17,7 @@ class Home extends Component {
                     /> 
                 </MetaTags> 
                 <Header/>
-                <Breadcrumb breadcrumb={{pagename:'Profile'}} />
+                <Breadcrumb breadcrumb={{pagename:`Agent's Profile`}} />
                 <Content></Content>
                 <Footer/>
             </Fragment> 
@@ -25,4 +25,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default Profile;

@@ -17,7 +17,7 @@ class Listinglist extends Component {
                     /> 
                 </MetaTags> 
                 <Header/>
-                {/* <Breadcrumb breadcrumb={{pagename:'Listing List'}} /> */}
+               
                 <Content/>
                 <Footer/>
             </Fragment>
